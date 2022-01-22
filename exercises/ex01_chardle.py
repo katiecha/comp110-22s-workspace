@@ -30,5 +30,5 @@ else:
     if counter == 1:
         print("1 instance of " + ch + " found in " + word)
     else:
-        print(str(counter) + " instances of " + ch + " in " + word)
+        print(str(counter) + " instances of " + ch + "found in " + word)
     
