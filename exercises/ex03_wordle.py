@@ -8,8 +8,9 @@ YELLOW_BOX: str = "\U0001F7E8"
 
 
 def main() -> None:
-    """The entrypoint o the program and main game loop."""
-    secret_word: str = "hi"
+    """The entrypoint of the program and main game loop."""
+    # Setting state of game (variables).
+    secret_word: str = "codes"
     len_secret_word: int = len(secret_word)
     user_guess: str = ""
     emoji_hint: str = ""
@@ -17,10 +18,13 @@ def main() -> None:
 
     while turns <= 6:
         print(f"=== Turn {turns}/6 ===")
+        # Collecting the guess of the player.
         user_guess = input_guess(len_secret_word)
+        # Producing a hint with colored emojis based on character existance.
         emoji_hint = emojified(user_guess, secret_word)
         print(emoji_hint)
 
+        #Declaring whether the player won or not.
         if user_guess == secret_word:
             print(f"You won in {turns}/6 turns!")
             turns = 7
@@ -37,6 +41,7 @@ def contains_char(word: str, char: str) -> bool:
     i: int = 0
     word_len = int(len(word))
 
+    # Iteratively checks every character in the word.
     while i < word_len:
         if word[i] == char:
             return True
@@ -52,6 +57,7 @@ def emojified(guess: str, secret: str) -> str:
     count: int = 0
     guess_len = int(len(guess))
 
+    # Uses contains_char function to check if the character is within the guess.
     while count < guess_len:
         if guess[count] == secret[count]:
             hint += GREEN_BOX
@@ -66,6 +72,7 @@ def emojified(guess: str, secret: str) -> str:
 def input_guess(length: int) -> str:
     """Collects input from user."""
     iguess: str = (input(f"Enter a {length} character word: "))
+    # Assures the inputed guess will be the proper length of the secret word.
     while len(iguess) != length:
         iguess = input(f"That wasn't {length} characters! Try again: ")
     return(iguess)
