@@ -24,7 +24,7 @@ def main() -> None:
         emoji_hint = emojified(user_guess, secret_word)
         print(emoji_hint)
 
-        #Declaring whether the player won or not.
+        # Declaring whether the player won or not.
         if user_guess == secret_word:
             print(f"You won in {turns}/6 turns!")
             turns = 7
@@ -74,7 +74,7 @@ def input_guess(length: int) -> str:
     iguess: str = (input(f"Enter a {length} character word: "))
     # Assures the inputed guess will be the proper length of the secret word.
     while len(iguess) != length:
-        iguess = input(f"That wasn't {length} characters! Try again: ")
+        iguess = input(f"That wasn't {length} chars! Try again: ")
     return(iguess)
 
 
