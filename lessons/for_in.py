@@ -14,3 +14,5 @@ while i < len(names):
 print("for...in output")
 for name in names:
     print(name)
+
+print(3 / 2)
