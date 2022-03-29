@@ -110,3 +110,38 @@ def count(values: list[str]) -> dict[str, int]:
         else:
             result[item] = 1
     return result
+
+
+def equal_to_exp(prior_exp_col: list[str], exp_level: str) -> list[bool]:
+    """Creates a list of bools, True if the column name matches the given string, False if not,"""
+    result: list[bool] = []
+    for item in prior_exp_col:
+        result.append(item == exp_level)
+    return result
+
+
+def masked(und_col: list[str], mask: list[bool]) -> list[int]:
+    """Takes two lists of strings and bools and returns a single list of every string value where the correlating bool was True."""
+    result: list[int] = []
+    for i in range(len(mask)):
+        if mask[i]:
+            result.append(int(und_col[i]))
+    return result
+
+
+def combine(table: dict[str, list[str]]) -> dict[str, list[int]]:
+    """Returns a dictionary with keys denoted by 'prior_exp levels' and list values with the correlating 'understanding levels'."""
+    result: dict[str, list[int]] = {}
+    for item in table["prior_exp"]:
+        experiences: list[bool] = equal_to_exp(table["prior_exp"], item)
+        result[item] = masked(table["understanding"], experiences)
+    return result
+
+
+def average(table: dict[str, list[int]], col: str) -> float:
+    """Takes the average value of a list of ints for a certain string."""
+    result: float = 0 
+    for item in table[col]:
+        result += item
+    result /= len(table[col])
+    return result
